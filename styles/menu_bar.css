@@ -1,0 +1,280 @@
+/* 
+ * menu-bar.css - Estilos para la barra de menú horizontal
+ * Parte del sistema de diseño para la aplicación de reservas
+ */
+
+/* Contenedor del menú */
+.menu-container {
+  position: relative;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Clase para cuando el menú tiene el fondo de burbujas */
+.menu-container.with-bubbles {
+  height: 60px;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* Ajustes para el fondo de burbujas en el menú */
+.menu-bubbles {
+  height: 100%;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* Ajustar el tamaño de las burbujas en el menú */
+.menu-bubbles .gradients-container {
+  transform: scale(0.5);
+}
+
+/* Asegurar que los iconos del menú estén por encima de la animación */
+.icon-menu-logged, .icon-menu {
+  position: relative;
+  z-index: 10;
+}
+
+/* Estilos para el menú con 6 iconos distribuidos para usuarios logueados */
+.icon-menu-logged {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15px 0;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+/* Estilos para el menú superior con iconos para usuarios no logueados */
+.icon-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  padding: 15px 30px;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.icon-menu-left, .icon-menu-right {
+  display: flex;
+  gap: 30px;
+}
+
+.icon-menu-item {
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+.icon-menu-item:hover {
+  transform: scale(1.2);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7), 
+              0 0 0 #000000, 
+              0 0 1px #000000, 
+              0 0 2px rgb(0, 0, 0);
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.9));
+}
+
+/* Contenedor de navegación */
+.nav-container {
+  background-color: var(--purple-dark);
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* Barra de menú horizontal */
+.menu-bar {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.menu-bar li {
+  position: relative;
+}
+
+.menu-bar li a {
+  display: flex;
+  align-items: center;
+  padding: 15px var(--spacing-md);
+  color: var(--white);
+  text-decoration: none;
+  font-family: 'Thinoo', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.menu-bar li a:hover {
+  background-color: var(--dark-green);
+}
+
+.menu-bar li a.active {
+  background-color: var(--dark-green);
+}
+
+/* Iconos en el menú */
+.menu-bar li a i {
+  margin-right: 8px;
+  font-size: 1.1rem;
+}
+
+/* Submenús (si se necesitan) */
+.menu-bar li ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--white);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  display: none;
+  z-index: 1001;
+  list-style: none;
+  padding: 0;
+}
+
+.menu-bar li:hover ul {
+  display: block;
+}
+
+.menu-bar li ul li {
+  width: 100%;
+}
+
+.menu-bar li ul li a {
+  padding: 10px 15px;
+  color: var(--dark-gray);
+  display: block;
+}
+
+.menu-bar li ul li a:hover {
+  background-color: var(--light-gray);
+  color: var(--primary-green);
+}
+
+/* Menú móvil */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 15px;
+}
+
+/* Estilos responsivos para el menú */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  
+  .menu-bar {
+    flex-direction: column;
+    width: 100%;
+    display: none;
+  }
+  
+  .menu-bar.active {
+    display: flex;
+  }
+  
+  .menu-bar li {
+    width: 100%;
+  }
+  
+  .menu-bar li a {
+    padding: 12px var(--spacing-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .menu-bar li ul {
+    position: static;
+    box-shadow: none;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .menu-bar li:hover ul {
+    display: none;
+  }
+  
+  .menu-bar li.active ul {
+    display: block;
+  }
+  
+  .nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* Variante con fondo naranja */
+.menu-bar.orange-theme {
+  background-color: var(--primary-orange);
+}
+
+.menu-bar.orange-theme li a:hover,
+.menu-bar.orange-theme li a.active {
+  background-color: var(--dark-orange);
+}
+
+/* Variante con degradado */
+.menu-bar.gradient-theme {
+  background: linear-gradient(90deg, var(--primary-green), var(--primary-orange));
+}
+
+.menu-bar.gradient-theme li a:hover,
+.menu-bar.gradient-theme li a.active {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Variante con bordes */
+.menu-bar.bordered-theme {
+  background-color: var(--white);
+  border-bottom: 3px solid var(--primary-green);
+}
+
+.menu-bar.bordered-theme li a {
+  color: var(--dark-gray);
+}
+
+.menu-bar.bordered-theme li a:hover,
+.menu-bar.bordered-theme li a.active {
+  color: var(--primary-green);
+  border-bottom: 3px solid var(--primary-green);
+  margin-bottom: -3px;
+  background-color: transparent;
+}
+
+/* Ajuste para el contenido cuando el menú tiene fondo de burbujas */
+body:not(.home-page) .content-with-menu {
+  padding-top: 70px; /* Espacio para evitar superposición con el menú fijo */
+}

@@ -1,0 +1,187 @@
+/* 
+ * responsive.css - Estilos responsivos para diferentes tamaños de pantalla
+ * Parte del sistema de diseño para la aplicación de reservas
+ */
+
+/* Variables para breakpoints */
+:root {
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+  }
+  
+  /* Dispositivos pequeños (móviles en vertical, menos de 576px) */
+  @media (max-width: 575.98px) {
+    html {
+      font-size: 14px;
+    }
+    
+    .container {
+      padding: 0 var(--spacing-sm);
+    }
+    
+    h1 {
+      font-size: 2rem;
+    }
+    
+    h2 {
+      font-size: 1.75rem;
+    }
+    
+    .hero h1 {
+      font-size: 2.25rem;
+    }
+    
+    .hero p {
+      font-size: 1rem;
+    }
+    
+    /* Menú móvil */
+    .menu-toggle {
+      display: block;
+    }
+    
+    .nav-menu {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background-color: var(--white);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      flex-direction: column;
+      align-items: center;
+      padding: var(--spacing-md) 0;
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition-normal);
+    }
+    
+    .nav-menu.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .nav-item {
+      margin: var(--spacing-sm) 0;
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+  }
+  
+  /* Dispositivos pequeños a medianos (móviles en horizontal, 576px y más) */
+  @media (min-width: 576px) and (max-width: 767.98px) {
+    .container {
+      max-width: 540px;
+    }
+    
+    /* Menú móvil */
+    .menu-toggle {
+      display: block;
+    }
+    
+    .nav-menu {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background-color: var(--white);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      flex-direction: column;
+      align-items: center;
+      padding: var(--spacing-md) 0;
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition-normal);
+    }
+    
+    .nav-menu.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .nav-item {
+      margin: var(--spacing-sm) 0;
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+  }
+  
+  /* Dispositivos medianos (tablets, 768px y más) */
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    .container {
+      max-width: 720px;
+    }
+  }
+  
+  /* Dispositivos grandes (desktops, 992px y más) */
+  @media (min-width: 992px) and (max-width: 1199.98px) {
+    .container {
+      max-width: 960px;
+    }
+  }
+  
+  /* Dispositivos extra grandes (desktops grandes, 1200px y más) */
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1140px;
+    }
+  }
+  
+  /* Ajustes para impresión */
+  @media print {
+    .top-nav, .footer, .menu-toggle {
+      display: none;
+    }
+    
+    .main-content {
+      padding-top: 0;
+    }
+    
+    body {
+      font-size: 12pt;
+      color: #000;
+      background-color: #fff;
+    }
+    
+    a {
+      text-decoration: underline;
+      color: #000;
+    }
+    
+    .card {
+      box-shadow: none;
+      border: 1px solid #ddd;
+    }
+    
+    .btn {
+      border: 1px solid #000;
+      color: #000;
+      background: none;
+    }
+  }
+  
