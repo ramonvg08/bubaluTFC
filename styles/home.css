@@ -31,7 +31,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 15px 0;
+    padding: 10px 0;
     width: 100%;
     position: absolute;
     top: 0;
@@ -90,7 +90,8 @@
 .search-form {
     display: flex;
     background-color: white;
-    border-radius: 5px;
+    opacity: 0.5;
+    border-radius: 50px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -100,6 +101,10 @@
     border: none;
     font-size: 25px;
     padding: 10px 15px; /* Padding ajustado para centrar el texto verticalmente */
+    margin-bottom: 0px;
+    border-radius: 50px;
+    background-color: white !important;
+    border-style: none !important;
     height: 50px; /* Altura fija para el input */
     line-height: 30px; /* Alineación de línea para centrar el texto */
     box-sizing: border-box; /* Para que el padding no afecte el tamaño total */
@@ -145,7 +150,7 @@
 .divider {
     width: 100%;
     height: 2px;
-    background-color: #ddd;
+    background-color: var(--white);
     margin: 0;
 }
 
@@ -217,6 +222,7 @@
 
 /* Espaciado para contenido en otras vistas */
 .content-with-menu {
+    z-index: 99;
     padding-top: 70px; /* Espacio para evitar superposición con el menú */
 }
 
@@ -273,6 +279,7 @@
     .search-container {
         top: 55%;
         width: 90%;
+        margin-top: 40px;
     }
     
     .search-input {

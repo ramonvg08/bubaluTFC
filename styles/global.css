@@ -5,12 +5,12 @@
  */
 
 /* Importación de fuentes */
-@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap");
 
 /* Fuente de respaldo */
 @font-face {
-  font-family: 'Impact';
-  src: url('../fonts/impact.ttf') format('truetype');
+  font-family: "Impact";
+  src: url("../fonts/impact.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -76,20 +76,32 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  height: 100%; /* Asegurar que html ocupe toda la altura */
 }
 
 body {
-  font-family: 'Dongle', sans-serif;
+  font-family: "Dongle", sans-serif;
   line-height: 1.3;
   color: var(--dark-gray);
   background-color: var(--white);
   font-size: 1.6rem;
+  display: flex; /* Para posicionar el footer */
+  flex-direction: column; /* Para posicionar el footer */
+  min-height: 100%; /* Para posicionar el footer */
 }
+
+/* Contenedor principal del contenido de la página, debe crecer para empujar el footer */
+/* Asumimos que .content-with-menu es el contenedor principal después del menú */
+/* O si hay otro wrapper general para el contenido principal de cada página */
+.content-with-menu { 
+  flex-grow: 1; /* Hace que este contenedor ocupe el espacio disponible */
+}
+
 
 h1,
 h2,
 h3 {
-  font-family: 'Dongle', sans-serif;
+  font-family: "Dongle", sans-serif;
   line-height: 1.1;
   margin-bottom: var(--spacing-md);
   color: var(--purple-dark);
@@ -99,7 +111,7 @@ h3 {
 h4,
 h5,
 h6 {
-  font-family: 'Dongle', sans-serif;
+  font-family: "Dongle", sans-serif;
   line-height: 1.1;
   margin-bottom: var(--spacing-md);
   color: var(--purple-regular);
@@ -164,7 +176,7 @@ img {
 /* Botones */
 .btn {
   display: inline-block;
-  font-family: 'Dongle', sans-serif;
+  font-family: "Dongle", sans-serif;
   font-size: 1.3rem;
   padding: var(--spacing-sm) var(--spacing-lg);
   border-radius: var(--border-radius-md);
@@ -210,7 +222,7 @@ img {
 input,
 select,
 textarea {
-  font-family: 'Dongle', sans-serif;
+  font-family: "Dongle", sans-serif;
   font-size: 1.2rem;
   padding: var(--spacing-sm) var(--spacing-md);
   border: 1px solid var(--medium-gray);
@@ -232,7 +244,7 @@ label {
   margin-bottom: var(--spacing-xs);
   font-weight: bold;
   color: var(--dark-gray);
-  font-family: 'Dongle', sans-serif;
+  font-family: "Dongle", sans-serif;
   font-size: 1.3rem;
 }
 
@@ -350,3 +362,4 @@ label {
 .rounded {
   border-radius: var(--border-radius-md);
 }
+

@@ -3,11 +3,11 @@ require_once("view/menu.php");
 ?>
 
 <link rel="stylesheet" href="styles/bubbles.css">
+<link rel="stylesheet" href="styles/modal.css"> 
 
 <div class="home-container">
     <!-- Contenedor de video con buscador superpuesto, reemplazado por efecto de burbujas -->
     <div class="video-container">
-        <!-- Efecto de burbujas en lugar del video -->
         <div class="gradient-bg">
             <svg xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -28,12 +28,10 @@ require_once("view/menu.php");
             </div>
         </div>
 
-        <!-- Texto "Bubbles" -->
         <div class="text-container">
             bubalu
         </div>
         
-        <!-- Buscador sobre el fondo de burbujas -->
         <div class="search-container">
             <form action="index.php" method="GET" class="search-form">
                 <input type="hidden" name="controlador" value="business">
@@ -46,73 +44,49 @@ require_once("view/menu.php");
         </div>
     </div>
 
-    <!-- Línea divisoria -->
     <div class="divider"></div>
 
 <?php
 // Configuración de paginación
-$items_per_page = 8; // 4 negocios por fila, 2 filas
+$items_per_page = 8;
 $current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $total_items = count($array);
 $total_pages = ceil($total_items / $items_per_page);
 
-// Asegurar que la página actual es válida
 if ($current_page < 1) {
     $current_page = 1;
 } elseif ($current_page > $total_pages && $total_pages > 0) {
     $current_page = $total_pages;
 }
 
-// Calcular el índice de inicio para la página actual
 $start_index = ($current_page - 1) * $items_per_page;
-
-// Obtener los negocios para la página actual
 $businesses_page = array_slice($array, $start_index, $items_per_page);
 
-// Mostrar resultados o mensaje si no hay resultados
 if (isset($array) && count($array) > 0) {
     echo '<div class="businesses-container">';
-    
-    // Mostrar los negocios en formato de cuadrícula 4x2
     echo '<div class="businesses-grid">';
     
     foreach ($businesses_page as $negocio) {
         echo '<div class="business-card">';
-        
-        // Imagen del negocio
-        echo '<a href="index.php?controlador=business&action=detail&id=' . htmlspecialchars($negocio['id_business']) . '">';
+        // Modificado para abrir modal en lugar de enlace directo
+        echo '<a href="#" onclick="openBusinessModal(' . htmlspecialchars($negocio['id_business']) . '); return false;">';
         echo '<img src="' . htmlspecialchars($negocio['business_image']) . '" alt="' . htmlspecialchars($negocio['name']) . '" class="business-image">';
         echo '</a>';
-        
-        // Nombre del negocio (en negrita)
         echo '<h3 class="business-name">' . htmlspecialchars($negocio['name']) . '</h3>';
-        
-        // Dirección y código postal (en azul)
         echo '<p class="business-address">' . htmlspecialchars($negocio['address']) . ', ' . htmlspecialchars($negocio['postal_code']) . '</p>';
-        
-        echo '</div>'; // Fin de la tarjeta de negocio
+        echo '</div>';
     }
     
     echo '</div>'; // Fin de la cuadrícula de negocios
     
-    // Paginación
     if ($total_pages > 1) {
         echo '<div class="pagination">';
-        
-        // Botón para la primera página
         if ($current_page > 1) {
             echo '<a href="index.php?controlador=business&action=home&page=1' . (isset($_GET['search']) ? '&search=' . urlencode($_GET['search']) : '') . '" class="pagination-button">«</a>';
-        }
-        
-        // Botón para la página anterior
-        if ($current_page > 1) {
             echo '<a href="index.php?controlador=business&action=home&page=' . ($current_page - 1) . (isset($_GET['search']) ? '&search=' . urlencode($_GET['search']) : '') . '" class="pagination-button">‹</a>';
         }
-        
-        // Mostrar enlaces a páginas cercanas
         $start_page = max(1, $current_page - 2);
         $end_page = min($total_pages, $current_page + 2);
-        
         for ($i = $start_page; $i <= $end_page; $i++) {
             if ($i == $current_page) {
                 echo '<span class="pagination-button active">' . $i . '</span>';
@@ -120,46 +94,42 @@ if (isset($array) && count($array) > 0) {
                 echo '<a href="index.php?controlador=business&action=home&page=' . $i . (isset($_GET['search']) ? '&search=' . urlencode($_GET['search']) : '') . '" class="pagination-button">' . $i . '</a>';
             }
         }
-        
-        // Botón para la página siguiente
         if ($current_page < $total_pages) {
             echo '<a href="index.php?controlador=business&action=home&page=' . ($current_page + 1) . (isset($_GET['search']) ? '&search=' . urlencode($_GET['search']) : '') . '" class="pagination-button">›</a>';
-        }
-        
-        // Botón para la última página
-        if ($current_page < $total_pages) {
             echo '<a href="index.php?controlador=business&action=home&page=' . $total_pages . (isset($_GET['search']) ? '&search=' . urlencode($_GET['search']) : '') . '" class="pagination-button">»</a>';
         }
-        
-        echo '</div>'; // Fin de la paginación
+        echo '</div>';
     }
-    
-    echo '</div>'; // Fin del contenedor de negocios
+    echo '</div>';
 } else if (isset($_GET['search'])) {
-    // Mensaje cuando no hay resultados de búsqueda
     echo '<div class="no-results">';
     echo '<h3>No se encontraron resultados para su búsqueda.</h3>';
     echo '<p>Intente con otros términos o <a href="index.php?controlador=business&action=home">vea todos los negocios</a>.</p>';
     echo '</div>';
 }
 ?>
+</div> <!-- Cierre de home-container -->
+
+<!-- Estructura de la Modal -->
+<div id="businessModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeBusinessModal()">&times;</button>
+        <div id="modalBodyContent">
+            <!-- El contenido del detalle del negocio se cargará aquí -->
+        </div>
+    </div>
 </div>
 
-<!-- Script para manejar la interactividad del efecto de burbujas -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const interactiveGradient = document.querySelector('.interactive');
-    
     if (interactiveGradient) {
         document.addEventListener('mousemove', function(e) {
             const x = e.pageX;
             const y = e.pageY;
-            
             const videoContainer = document.querySelector('.video-container');
             if (videoContainer) {
                 const rect = videoContainer.getBoundingClientRect();
-                
-                // Solo aplicar si el mouse está dentro del contenedor de video
                 if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
                     interactiveGradient.style.left = `${x - rect.left}px`;
                     interactiveGradient.style.top = `${y - rect.top}px`;
@@ -167,5 +137,95 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Funcionalidad de la Modal
+    const modal = document.getElementById('businessModal');
+    const modalBody = document.getElementById('modalBodyContent');
+    const homeContainer = document.querySelector('.home-container'); // Elemento a desenfocar
+
+    window.openBusinessModal = function(businessId) {
+        // Mostrar spinner o mensaje de carga
+        modalBody.innerHTML = '<p>Cargando detalles...</p>';
+        modal.style.display = 'flex';
+        if(homeContainer) homeContainer.classList.add('blur-background');
+        document.body.classList.add('modal-open');
+
+        // Petición AJAX para obtener el contenido del detalle del negocio
+        // Asumimos que jQuery está disponible globalmente por el index.php o menu.php
+        $.ajax({
+            url: 'index.php?controlador=business&action=get_detail_content&id=' + businessId,
+            type: 'GET',
+            success: function(response) {
+                modalBody.innerHTML = response;
+                // Re-inicializar scripts si es necesario para el contenido cargado dinámicamente
+                // Por ejemplo, los event listeners para los botones de reserva dentro de la modal
+                // Esto es importante porque el script original de business_detail_view.php no se ejecutará aquí.
+                // Se necesitará replicar o adaptar la lógica de setServiceId y toggleExternalCustomerForm aquí o en el contenido devuelto.
+            },
+            error: function() {
+                modalBody.innerHTML = '<p>Error al cargar los detalles. Por favor, inténtelo de nuevo.</p>';
+            }
+        });
+    }
+
+    window.closeBusinessModal = function() {
+        modal.style.display = 'none';
+        modalBody.innerHTML = ''; // Limpiar contenido
+        if(homeContainer) homeContainer.classList.remove('blur-background');
+        document.body.classList.remove('modal-open');
+    }
+
+    // Cerrar modal al hacer clic fuera de ella
+    modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closeBusinessModal();
+        }
+    });
+
+    // Cerrar modal con la tecla Escape
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && modal.style.display === 'flex') {
+            closeBusinessModal();
+        }
+    });
 });
+
+// Funciones que estaban en business_detail_view.php, adaptadas para el contexto de la modal
+// Estas funciones deben estar disponibles globalmente o ser re-adjuntadas después de cargar el contenido de la modal.
+function setServiceId(serviceId) {
+    var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'index.php?controlador=business&action=guardar_sesion';
+    var serviceIdInput = document.createElement('input');
+    serviceIdInput.type = 'hidden';
+    serviceIdInput.name = 'service_id';
+    serviceIdInput.value = serviceId;
+    form.appendChild(serviceIdInput);
+    document.body.appendChild(form);
+    form.submit();
+}
+
+function toggleExternalCustomerForm(serviceId) {
+    var formId = 'external-form-' + serviceId;
+    var form = document.getElementById(formId);
+    var allForms = document.querySelectorAll('.modal-external-customer-form'); // Asegurarse de seleccionar dentro de la modal si es necesario
+    
+    // Primero, ocultar todos los otros formularios de cliente externo que puedan estar abiertos
+    allForms.forEach(f => {
+        if (f.id !== formId) {
+            f.style.display = 'none';
+        }
+    });
+
+    if (form) {
+        if (form.style.display === 'block') {
+            form.style.display = 'none';
+        } else {
+            form.style.display = 'block';
+        }
+    }
+}
 </script>
+
+
+<?php render_site_footer();?>

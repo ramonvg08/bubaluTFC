@@ -7,8 +7,8 @@ function home(){
     $datos = new Business_model();
     
     // Verificar si se ha enviado una búsqueda
-    if(isset($_GET['search']) && !empty($_GET['search'])) {
-        $search_term = $_GET['search'];
+    if(isset($_GET["search"]) && !empty($_GET["search"])) {
+        $search_term = $_GET["search"];
         $array = $datos->search_business($search_term);
     } else {
         $array = $datos->get_business();
@@ -32,8 +32,8 @@ function iniciar(){
 
             if ($user_data) {
                 $_SESSION["nombre"] = $usuario;
-                $_SESSION["role"] = $user_data['role']; // Guardar el rol en la sesión
-                $_SESSION["id_user"] = $user_data['id_user'];
+                $_SESSION["role"] = $user_data["role"]; // Guardar el rol en la sesión
+                $_SESSION["id_user"] = $user_data["id_user"];
                 $message = "<p>Bienvenido $usuario !!</p>";
             } else {
                 $message = "<p>Usuario o contraseña incorrectos</p>";
@@ -44,8 +44,8 @@ function iniciar(){
     require_once("view/session_view.php");
 }
 
-function detail() {  // Cambiar business_detail por detail
-    $business_id = $_GET['id'] ?? null;
+function detail() { 
+    $business_id = $_GET["id"] ?? null;
 
     if (!$business_id) {
         die("Error: No se proporcionó un ID de negocio.");
@@ -54,49 +54,76 @@ function detail() {  // Cambiar business_detail por detail
     require_once __DIR__ . "/../model/business_model.php";
     $businessModel = new Business_Model();
 
-    // Obtener datos del negocio
     $business = $businessModel->get_business_by_id($business_id);
 
     if (!$business) {
         die("Error: El negocio no existe.");
     }
 
-    // Obtener servicios del negocio
     $services = $businessModel->get_services_by_business($business_id);
 
-    require_once __DIR__ . "/../view/business_detail_view.php";
+    // Esta acción ahora es para la página completa, la modal usará get_detail_content
+    require_once __DIR__ . "/../view/business_detail_view.php"; 
 }
 
+// Nueva acción para cargar el contenido de la modal vía AJAX
+function get_detail_content() {
+    $business_id = $_GET["id"] ?? null;
+
+    if (!$business_id) {
+        // No usar die() para respuestas AJAX, mejor un error HTTP o un mensaje simple
+        http_response_code(400);
+        echo "Error: No se proporcionó un ID de negocio.";
+        return;
+    }
+
+    require_once __DIR__ . "/../model/business_model.php";
+    $businessModel = new Business_Model();
+    $business = $businessModel->get_business_by_id($business_id);
+
+    if (!$business) {
+        http_response_code(404);
+        echo "Error: El negocio no existe.";
+        return;
+    }
+
+    $services = $businessModel->get_services_by_business($business_id);
+
+    // Cargar solo el fragmento de la vista para la modal
+    // Asegúrate de que business_detail_modal_content.php no incluya layouts completos (como menu.php)
+    // y que las variables $business y $services estén disponibles para ella.
+    include __DIR__ . "/../view/business_detail_modal_content.php";
+}
+
+
 function guardar_sesion() {
-    // Verificar si el usuario está logueado
-    if (!isset($_SESSION['id_user'])) {
-        header("Location: index.php?controlador=business&action=iniciar"); // Redirige al inicio/login
+    if (!isset($_SESSION["id_user"])) {
+        header("Location: index.php?controlador=business&action=iniciar");
         exit;
     }
     
-    // Recibir el service_id del formulario
-    $service_id = $_POST['service_id'] ?? null;
-    // Guardar el service_id en la sesión
-    $_SESSION['service_id'] = $service_id;
+    $service_id = $_POST["service_id"] ?? null;
+    $_SESSION["service_id"] = $service_id;
     
-    // Si es administrador y hay información de cliente externo, guardarla en la sesión
-    if ($_SESSION['role'] == 'administrator') {
-        if (isset($_POST['external_customer'])) {
-            $_SESSION['external_customer'] = [
-                'name' => $_POST['customer_name'] ?? '',
-                'phone' => $_POST['customer_phone'] ?? '',
-                'comments' => $_POST['customer_comments'] ?? ''
+    if (isset($_SESSION["role"]) && $_SESSION["role"] == "administrator") {
+        if (isset($_POST["external_customer"])) {
+            $_SESSION["external_customer"] = [
+                "name" => $_POST["customer_name"] ?? 
+                "",
+                "phone" => $_POST["customer_phone"] ?? 
+                "",
+                "comments" => $_POST["customer_comments"] ?? 
+                ""
             ];
         }
     }
 
     header("Location: index.php?controlador=booking&action=show");
-    exit; // Importante: agregar exit() para detener la ejecución del script
+    exit;
 }
 
 function desconectar(){
     session_destroy();
-    //Para que se vaya a la pagina de inicio
     header("Location: index.php");
 }
 ?>

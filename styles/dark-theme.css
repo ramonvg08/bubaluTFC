@@ -90,6 +90,10 @@
   color: var(--dark-accent-secondary);
 }
 
+.dark-theme .divider {
+  background-color: var(--dark-bg-primary);
+}
+
 .dark-theme .btn-primary {
   background-color: var(--dark-accent-primary);
   color: var(--dark-bg-primary); /* Texto oscuro para mejor contraste con amarillo */
