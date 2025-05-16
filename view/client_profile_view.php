@@ -1,8 +1,30 @@
 <?php
-require_once("view/menu.php");
+require_once("view/menu.php"); // menu.php already links styles/bubbles.css
 ?>
-<div class="content-with-menu">
-    <div class="user-profile-container">
+<div class="content-with-menu" style="position: relative;"> <!-- Make this the positioning context -->
+    <!-- Animated Background -->
+    <div class="gradient-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;">
+        <svg xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <filter id="goo">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+                    <feBlend in="SourceGraphic" in2="goo" />
+                </filter>
+            </defs>
+        </svg>
+        <div class="gradients-container">
+            <div class="g1"></div>
+            <div class="g2"></div>
+            <div class="g3"></div>
+            <div class="g4"></div>
+            <div class="g5"></div>
+            <div class="interactive"></div>
+        </div>
+    </div>
+
+    <!-- Original Content -->
+    <div class="user-profile-container" style="position: relative; z-index: 1;"> <!-- Content on top -->
         <div class="user-profile">
             <h2>Perfil de Cliente</h2>
             
@@ -53,12 +75,17 @@ require_once("view/menu.php");
     }
     
     .user-profile {
-        background-color: var(--light-gray);
+        /* background-color: var(--light-gray); Original */
+        background-color: rgba(245, 245, 245, 0.85); /* Light gray with opacity for light mode */
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
         padding: 20px;
     }
     
+    .dark-theme .user-profile {
+        background-color: rgba(52, 53, 65, 0.85); /* Dark gray with opacity for dark mode (var(--dark-bg-secondary)) */
+    }
+
     .profile-content {
         display: flex;
         flex-wrap: wrap;
@@ -108,3 +135,5 @@ require_once("view/menu.php");
         text-align: center;
     }
 </style>
+
+<?php render_site_footer();?>

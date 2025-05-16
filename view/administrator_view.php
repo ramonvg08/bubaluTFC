@@ -1,6 +1,6 @@
 <?php require_once("view/menu.php"); ?>
 <link rel="stylesheet" href="styles/tables.css">
-<div class="content-with-menu">
+<div class="content-with-menu" style="z-index: 99;">
     <div class="admin-dashboard">
         <h1>Gestión de Negocio</h1>
 
@@ -520,3 +520,5 @@
         background-color: #409dc4;
     }
 </style>
+
+<?php render_site_footer();?>

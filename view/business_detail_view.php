@@ -151,3 +151,6 @@
         }
     }
 </script>
+
+
+<?php render_site_footer(); ?>

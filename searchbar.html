@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Barra de Búsqueda</title>
+  <style>
+    .search-container {
+      display: flex;
+      align-items: center;
+      width: 300px;
+      height: 40px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(6px);
+      padding: 0 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .search-container input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+      padding: 0 10px;
+    }
+
+    .search-container input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .search-container .search-icon {
+      width: 20px;
+      height: 20px;
+      fill: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body style="background: #222222; display: flex; justify-content: center; align-items: center; height: 100vh;">
+
+  <div class="search-container">
+    <input type="text" placeholder="Buscar por nombre o código postal">
+    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 
+               6.5 6.5 0 109.5 16c1.61 0 3.09-.59 
+               4.23-1.57l.27.28v.79l5 5L20.5 
+               19l-5-5zm-6 0C8.01 14 6 11.99 
+               6 9.5S8.01 5 10.5 5 15 7.01 
+               15 9.5 12.99 14 10.5 14z"/>
+    </svg>
+  </div>
+
+</body>
+</html>

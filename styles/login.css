@@ -6,6 +6,8 @@
 /* Contenedor principal */
 .container {
   display: flex;
+  position: relative;
+  z-index: 10;
   justify-content: center;
   align-items: center;
   min-height: 80vh;
@@ -17,6 +19,7 @@
   position: absolute;
   top: 20px;
   left: 20px;
+  z-index: 1000;
   font-size: 24px;
   color: var();
   text-decoration: none;
@@ -41,13 +44,12 @@
 /* Encabezado del formulario */
 #form_header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-bottom: var(--spacing-lg);
 }
 
 #form_header h1 {
-  color: var(--purple-dark);
   margin: 0;
   font-size: 1.8rem;
   font-family: 'Impossible', Arial, sans-serif;
@@ -76,7 +78,7 @@
 .input-box label {
   display: block;
   margin-bottom: var(--spacing-xs);
-  font-weight: 700;
+  font-weight: 200;
   color: var(--dark-gray);
   font-family: 'Impact', Arial, sans-serif;
 }
@@ -85,6 +87,7 @@
 .input-field {
   display: flex;
   align-items: center;
+  justify-content: center;
   border: 2px solid var(--medium-gray);
   border-radius: var(--border-radius-sm);
   overflow: hidden;
@@ -107,6 +110,7 @@
 .input-field input {
   flex: 1;
   padding: var(--spacing-md);
+  margin: 0;
   border: none;
   outline: none;
   font-family: Arial, sans-serif;
@@ -121,8 +125,8 @@
 #login_button {
   width: 100%;
   padding: var(--spacing-md);
-  background-color: var(----purple-regular);
-  color: var(--white);
+  background-color: var(--purple-regular);
+  color: var(--dark-text-primary);
   border: none;
   border-radius: var(--border-radius-sm);
   font-family: 'Impact', Arial, sans-serif;

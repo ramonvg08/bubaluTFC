@@ -161,14 +161,15 @@ require_once("view/menu.php");
                             li.style.padding = '8px';
                             li.style.margin = '5px 0';
                             li.style.borderRadius = '4px';
-                            li.style.backgroundColor = '#f0f0f0';
+                            li.style.backgroundColor = 'var(--medium-gray)';
+                            li.style.color = 'var(--dark-gray)';
                             
                             // Añadir evento de clic para seleccionar la hora
                             li.addEventListener('click', function() {
                                 // Quitar selección anterior
                                 document.querySelectorAll('.time-slot').forEach(function(el) {
-                                    el.style.backgroundColor = '#f0f0f0';
-                                    el.style.color = '#000';
+                                    el.style.backgroundColor = 'var(--medium-gray)';
+                                    el.style.color = 'var(--dark-gray)';
                                 });
                                 
                                 // Marcar como seleccionado
