@@ -76,6 +76,10 @@ if (isset($_GET["controlador"]) && isset($_GET["action"])) {
             <a href="index.php?controlador=contacto&action=contactar" class="icon-menu-item">
                 <i class="fas fa-envelope"></i>
             </a>
+             <!-- El icono de info-circle genérico para no administradores, si se quisiera mantener -->
+             <!-- <a href="#" class="icon-menu-item">
+                <i class="fas fa-info-circle"></i>
+            </a> -->
         <?php endif; ?>
         <a href="index.php?controlador=business&action=desconectar" class="icon-menu-item">
             <i class="fas fa-sign-out-alt"></i>
@@ -101,13 +105,25 @@ if (isset($_GET["controlador"]) && isset($_GET["action"])) {
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const interactiveGradient = document.querySelector(".menu-bubbles .interactive");
+<<<<<<< HEAD
+=======
+    
+>>>>>>> bd57c1faec83b7df634f7515219e03c23a508f7d
     if (interactiveGradient) {
         document.addEventListener("mousemove", function(e) {
             const x = e.pageX;
             const y = e.pageY;
+<<<<<<< HEAD
             const menuContainer = document.querySelector(".menu-container.with-bubbles");
             if (menuContainer) {
                 const rect = menuContainer.getBoundingClientRect();
+=======
+            
+            const menuContainer = document.querySelector(".menu-container.with-bubbles");
+            if (menuContainer) {
+                const rect = menuContainer.getBoundingClientRect();
+                
+>>>>>>> bd57c1faec83b7df634f7515219e03c23a508f7d
                 if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
                     interactiveGradient.style.left = `${x - rect.left}px`;
                     interactiveGradient.style.top = `${y - rect.top}px`;
@@ -120,6 +136,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <?php endif; ?>
 
 <?php
+<<<<<<< HEAD
 if (isset($_SESSION["role"]) && $_SESSION["role"] === "administrator"):
 ?>
 <script>
@@ -159,9 +176,66 @@ document.addEventListener("DOMContentLoaded", function() {
     if (typeof window.fetchPendingCount === "function") {
         window.fetchPendingCount();
     }
+=======
+// Script para la burbuja de notificación de solicitudes pendientes (solo para administradores)
+if (isset($_SESSION["role"]) && $_SESSION["role"] === "administrator"):
+?>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const bubble = document.getElementById("pending-requests-bubble");
+
+    function fetchPendingCount() {
+        if (!bubble) return; // Salir si el elemento no existe
+
+        fetch("index.php?controlador=administrator&action=get_pending_requests_count_ajax", {
+            method: "GET", // Es una solicitud GET
+            headers: {
+                "X-Requested-With": "XMLHttpRequest" // Cabecera para que index.php la reconozca como AJAX
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok " + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success && data.pending_count > 0) {
+                    bubble.textContent = data.pending_count;
+                    bubble.style.display = "flex"; // Usar flex para centrar el número
+                } else {
+                    bubble.style.display = "none";
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching pending requests count:", error);
+                // Considerar mostrar un mensaje de error más amigable o reintentar
+                bubble.style.display = "none";
+            });
+    }
+
+    fetchPendingCount(); // Cargar al inicio
+
+    // Para actualizar la burbuja después de aceptar/rechazar una solicitud en la página de pendientes:
+    // Si la página de pendientes se recarga completamente después de una acción, fetchPendingCount() se llamará automáticamente.
+    // Si la actualización en la página de pendientes es vía AJAX, esa lógica AJAX debería llamar a fetchPendingCount() al completarse.
+    // Ejemplo de cómo se podría llamar desde otra parte del código si fuera necesario:
+    // document.addEventListener("someCustomEventAfterRequestProcessed", fetchPendingCount);
+
+    // Opcional: Actualizar periódicamente (considerar el impacto en el servidor)
+    // setInterval(fetchPendingCount, 30000); // Actualizar cada 30 segundos
+>>>>>>> bd57c1faec83b7df634f7515219e03c23a508f7d
 });
 </script>
 <?php
 endif;
 ?>
 
+<<<<<<< HEAD
+=======
+<?php
+// La función render_site_footer() y los estilos del footer ahora se cargan desde view/footer_loader.php
+// NO llamar a render_site_footer(); aquí. Se llamará al final de cada vista individual si es necesario.
+?>
+
+>>>>>>> bd57c1faec83b7df634f7515219e03c23a508f7d

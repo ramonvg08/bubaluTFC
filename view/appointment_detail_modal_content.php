@@ -3,6 +3,28 @@
 // Este archivo genera el HTML para el contenido de la modal de detalle de reserva.
 // Se espera que la variable $reserva_detalle (array) esté disponible con los datos de la reserva.
 
+<<<<<<< HEAD
+=======
+// Simulación de datos si no vienen del controlador (para pruebas aisladas)
+if (!isset($reserva_detalle)) {
+    // $reserva_detalle = [
+    //     'id_appointment' => '123',
+    //     'date_time' => '2025-05-15 10:00:00',
+    //     'business_name' => 'Peluquería Estilo Único',
+    //     'service_name' => 'Corte de Caballero',
+    //     'customer_name' => 'Juan Pérez',
+    //     'customer_phone' => '600123456',
+    //     'customer_email' => 'juan.perez@example.com', // Asumiendo que podríamos tener el email
+    //     'state' => 'confirmed',
+    //     'comments' => 'Llegará 5 minutos tarde.',
+    //     'service_price' => '20.00',
+    //     'service_duration' => '30'
+    // ];
+    echo "<p>Error: Detalles de la reserva no disponibles.</p>";
+    return; // Salir si no hay datos
+}
+
+>>>>>>> bd57c1faec83b7df634f7515219e03c23a508f7d
 ?>
 
 <h3>Detalles de la Reserva #<?= htmlspecialchars($reserva_detalle["id_appointment"]) ?></h3>

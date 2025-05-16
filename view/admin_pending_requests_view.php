@@ -1,5 +1,11 @@
 <?php
 // view/admin_pending_requests_view.php
+<<<<<<< HEAD
+=======
+// Esta vista mostrará la lista de solicitudes de reserva pendientes para el administrador.
+
+// Incluir el menú (que a su vez carga footer_loader.php)
+>>>>>>> bd57c1faec83b7df634f7515219e03c23a508f7d
 require_once("view/menu.php");
 ?>
 <!DOCTYPE html>
@@ -8,6 +14,10 @@ require_once("view/menu.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solicitudes Pendientes - <?php echo isset($nombre_negocio) ? htmlspecialchars($nombre_negocio) : "Administración"; ?></title>
+<<<<<<< HEAD
+=======
+    <!-- Aquí se podrían añadir estilos específicos para esta página si es necesario -->
+>>>>>>> bd57c1faec83b7df634f7515219e03c23a508f7d
     <link rel="stylesheet" href="styles/pending_requests.css">
     <style>
         /* Estilos básicos para la tabla de solicitudes pendientes */
@@ -42,15 +52,22 @@ require_once("view/menu.php");
         .requests-table tr:nth-child(even) {
             background-color: var(--light-bg-tertiary, #f2f2f2);
         }
+<<<<<<< HEAD
         .requests-table .actions button {
+=======
+        .requests-table .actions a {
+>>>>>>> bd57c1faec83b7df634f7515219e03c23a508f7d
             margin-right: 8px;
             padding: 5px 10px;
             border-radius: var(--border-radius-sm, 4px);
             text-decoration: none;
             font-size: 0.85em;
             transition: background-color 0.3s ease;
+<<<<<<< HEAD
             border: none;
             cursor: pointer;
+=======
+>>>>>>> bd57c1faec83b7df634f7515219e03c23a508f7d
         }
         .requests-table .actions .approve-btn {
             background-color: var(--success-bg, #28a745);
@@ -83,7 +100,11 @@ require_once("view/menu.php");
             border-color: var(--dark-border-color, #444);
         }
         .dark-theme .requests-table th {
+<<<<<<< HEAD
             background-color: var(--dark-purple-light, #583772);
+=======
+            background-color: var(--dark-purple-light, #583772); /* Un púrpura más oscuro para el header en modo oscuro */
+>>>>>>> bd57c1faec83b7df634f7515219e03c23a508f7d
             color: var(--dark-text-primary, #f1f1f1);
         }
         .dark-theme .requests-table tr:nth-child(even) {
@@ -92,6 +113,7 @@ require_once("view/menu.php");
         .dark-theme .no-requests {
             color: var(--dark-text-secondary, #aaa);
         }
+<<<<<<< HEAD
     </style>
 </head>
 <body>
@@ -99,6 +121,15 @@ require_once("view/menu.php");
         <div class="pending-requests-container">
             <h1>Solicitudes de Reserva Pendientes</h1>
             <!-- Contenedor de mensajes eliminado -->
+=======
+
+    </style>
+</head>
+<body>
+    <div class="content-with-menu" style="z-index: 99;">
+        <div class="pending-requests-container">
+            <h1>Solicitudes de Reserva Pendientes</h1>
+>>>>>>> bd57c1faec83b7df634f7515219e03c23a508f7d
             <?php if (!empty($pending_appointments)): ?>
                 <table class="requests-table">
                     <thead>
@@ -112,14 +143,23 @@ require_once("view/menu.php");
                     </thead>
                     <tbody>
                         <?php foreach ($pending_appointments as $appointment): ?>
+<<<<<<< HEAD
                             <tr id="appointment-row-<?php echo $appointment["id_appointment"]; ?>">
+=======
+                            <tr>
+>>>>>>> bd57c1faec83b7df634f7515219e03c23a508f7d
                                 <td><?php echo htmlspecialchars($appointment["customer_name"]); ?></td>
                                 <td><?php echo htmlspecialchars($appointment["service_name"]); ?></td>
                                 <td><?php echo htmlspecialchars(date("d/m/Y H:i", strtotime($appointment["date_time"]))); ?></td>
                                 <td><?php echo htmlspecialchars(!empty($appointment["comments"]) ? $appointment["comments"] : "-"); ?></td>
                                 <td class="actions">
+<<<<<<< HEAD
                                     <button onclick="processAppointment(<?php echo $appointment['id_appointment']; ?>, 'confirmed')" class="approve-btn">Aceptar</button>
                                     <button onclick="processAppointment(<?php echo $appointment['id_appointment']; ?>, 'canceled')" class="reject-btn">Rechazar</button>
+=======
+                                    <a href="index.php?controlador=administrator&action=process_pending_appointment&id_appointment=<?php echo $appointment["id_appointment"]; ?>&status=confirmed" class="approve-btn">Aceptar</a>
+                                    <a href="index.php?controlador=administrator&action=process_pending_appointment&id_appointment=<?php echo $appointment["id_appointment"]; ?>&status=cancelled" class="reject-btn">Rechazar</a>
+>>>>>>> bd57c1faec83b7df634f7515219e03c23a508f7d
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -131,6 +171,7 @@ require_once("view/menu.php");
         </div>
     </div>
 
+<<<<<<< HEAD
     <script>
     function processAppointment(appointmentId, newStatus) {
         const formData = new FormData();
@@ -180,6 +221,10 @@ require_once("view/menu.php");
     </script>
 
     <?php 
+=======
+    <?php 
+    // Renderizar el footer al final de la página
+>>>>>>> bd57c1faec83b7df634f7515219e03c23a508f7d
     if (function_exists("render_site_footer")) {
         render_site_footer();
     }
