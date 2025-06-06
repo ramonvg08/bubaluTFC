@@ -1,0 +1,276 @@
+/* 
+ * forms.css - Estilos específicos para formularios de reserva
+ * Parte del sistema de diseño para la aplicación de reservas
+ */
+
+/* Contenedor de formulario */
+.form-container {
+    background-color: var(--white);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--box-shadow);
+    padding: var(--spacing-lg);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .form-title {
+    color: var(--primary-green);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+  }
+  
+  .form-subtitle {
+    color: var(--dark-gray);
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+  }
+  
+  /* Grupos de campos */
+  .form-group {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+  }
+  
+  .form-col {
+    flex: 1;
+    padding: 0 10px;
+    min-width: 250px;
+  }
+  
+  /* Etiquetas y campos */
+  .form-label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 700;
+    color: var(--dark-gray);
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-family: 'Thinoo', Arial, sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--border-radius-sm);
+    transition: all var(--transition-fast);
+  }
+  
+  .form-control:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.2);
+    outline: none;
+  }
+  
+  .form-control::placeholder {
+    color: #aaa;
+  }
+  
+  /* Campos específicos */
+  textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  select.form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+  
+  /* Checkbox y radio */
+  .form-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .form-check-input {
+    width: auto;
+    margin-right: var(--spacing-sm);
+  }
+  
+  .form-check-label {
+    margin-bottom: 0;
+    font-weight: 300;
+  }
+  
+  /* Validación */
+  .form-control.is-invalid {
+    border-color: var(--error);
+  }
+  
+  .invalid-feedback {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--error);
+  }
+  
+  /* Calendario de reservas */
+  .calendar-container {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .calendar-title {
+    font-size: 1.25rem;
+    color: var(--primary-green);
+  }
+  
+  .calendar-nav {
+    display: flex;
+    gap: var(--spacing-sm);
+  }
+  
+  .calendar-nav-btn {
+    background-color: var(--light-gray);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+  
+  .calendar-nav-btn:hover {
+    background-color: var(--medium-gray);
+  }
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+  }
+  
+  .calendar-day-header {
+    text-align: center;
+    font-weight: 700;
+    padding: var(--spacing-xs);
+  }
+  
+  .calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+  
+  .calendar-day:hover {
+    background-color: var(--light-green);
+    color: var(--white);
+  }
+  
+  .calendar-day.selected {
+    background-color: var(--primary-green);
+    color: var(--white);
+  }
+  
+  .calendar-day.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+  
+  /* Selector de hora */
+  .time-slots {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .time-slot {
+    padding: var(--spacing-sm);
+    text-align: center;
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+  
+  .time-slot:hover {
+    border-color: var(--primary-green);
+  }
+  
+  .time-slot.selected {
+    background-color: var(--primary-green);
+    color: var(--white);
+    border-color: var(--primary-green);
+  }
+  
+  .time-slot.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  /* Resumen de reserva */
+  .booking-summary {
+    background-color: var(--light-gray);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .summary-title {
+    font-size: 1.1rem;
+    color: var(--primary-green);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  .summary-label {
+    font-weight: 700;
+  }
+  
+  .summary-total {
+    border-top: 1px solid var(--medium-gray);
+    margin-top: var(--spacing-sm);
+    padding-top: var(--spacing-sm);
+    font-weight: 700;
+    color: var(--primary-green);
+  }
+  
+  /* Botones de formulario */
+  .form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--spacing-lg);
+  }
+  
+  @media (max-width: 575.98px) {
+    .form-buttons {
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+    
+    .form-buttons .btn {
+      width: 100%;
+    }
+  }
+  

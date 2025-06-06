@@ -1,0 +1,104 @@
+/* styles/pending_requests.css */
+
+/* Estilos básicos para la tabla de solicitudes pendientes */
+.pending-requests-container {
+    padding: 20px;
+    margin: 20px;
+    max-width: 900px;
+    background-color: var(--light-bg-secondary, #f9f9f9);
+    border-radius: var(--border-radius-md, 8px);
+    box-shadow: var(--shadow-md, 0 4px 6px rgba(0,0,0,0.1));
+}
+
+.pending-requests-container h1 {
+    color: var(--dark-text-primary, #333);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.requests-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.requests-table th, .requests-table td {
+    border: 1px solid var(--medium-gray, #ddd);
+    padding: 10px;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.requests-table th {
+    background-color: var(--purple-light, #e9d8f2);
+    color: var(--purple-dark, #4c0080);
+}
+
+.requests-table tr:nth-child(even) {
+    background-color: var(--light-bg-tertiary, #f2f2f2);
+}
+
+.requests-table .actions a {
+    margin-right: 8px;
+    padding: 5px 10px;
+    border-radius: var(--border-radius-sm, 4px);
+    text-decoration: none;
+    font-size: 0.85em;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Asegura que los botones se comporten bien */
+    text-align: center;
+    min-width: 70px; /* Ancho mínimo para los botones */
+}
+
+.requests-table .actions .approve-btn {
+    background-color: var(--success-bg, #28a745);
+    color: white;
+}
+
+.requests-table .actions .approve-btn:hover {
+    background-color: var(--success-bg-hover, #218838);
+}
+
+.requests-table .actions .reject-btn {
+    background-color: var(--danger-bg, #dc3545);
+    color: white;
+}
+
+.requests-table .actions .reject-btn:hover {
+    background-color: var(--danger-bg-hover, #c82333);
+}
+
+.no-requests {
+    text-align: center;
+    padding: 20px;
+    color: var(--dark-text-secondary, #555);
+}
+
+/* Estilos para modo oscuro */
+.dark-theme .pending-requests-container {
+    background-color: var(--dark-bg-secondary, #2a2a2a);
+}
+
+.dark-theme .pending-requests-container h1 {
+    color: var(--dark-text-primary, #f1f1f1);
+}
+
+.dark-theme .requests-table th, .dark-theme .requests-table td {
+    border-color: var(--dark-border-color, #444);
+}
+
+.dark-theme .requests-table th {
+    background-color: var(--dark-purple-light, #583772);
+    color: var(--dark-text-primary, #f1f1f1);
+}
+
+.dark-theme .requests-table tr:nth-child(even) {
+    background-color: var(--dark-bg-tertiary, #333333);
+}
+
+.dark-theme .no-requests {
+    color: var(--dark-text-secondary, #aaa);
+}
+
+/* Los estilos de la burbuja de notificación se han movido a menu_bar.css */
+

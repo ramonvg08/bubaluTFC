@@ -1,0 +1,364 @@
+/* styles/calendar.css */
+
+/* Calendar Container */
+.calendar-container {
+    margin: 20px auto;
+    padding: 10px; /* Reduced padding */
+    background-color: var(--white);
+    border-radius: var(--border-radius-md, 8px);
+    box-shadow: var(--box-shadow, 0 2px 10px rgba(0, 0, 0, 0.1));
+    /* overflow-x: auto; REMOVED to prevent scroll, content must fit */
+    width: 100%; /* Ensure it tries to fit within parent */
+    max-width: 100%; /* Prevent it from exceeding parent */
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm, 10px); /* Reduced margin */
+    padding-bottom: var(--spacing-xs, 5px); /* Reduced padding */
+    border-bottom: 1px solid var(--medium-gray, #eee);
+}
+
+.calendar-header h2 {
+    margin: 0;
+    font-size: 1.6em; /* Reduced font size */
+    color: var(--purple-dark);
+}
+
+.calendar-nav button {
+    background-color: var(--purple-regular);
+    color: var(--white);
+    border: none;
+    padding: var(--spacing-xs, 6px) var(--spacing-sm, 10px); /* Reduced padding */
+    border-radius: var(--border-radius-sm, 4px);
+    cursor: pointer;
+    margin-left: var(--spacing-xs, 5px);
+    font-size: 1em; /* Reduced font size */
+    transition: background-color var(--transition-fast, 0.2s ease);
+}
+
+.calendar-nav button:hover {
+    background-color: var(--purple-dark);
+}
+
+/* Calendar Grid */
+.calendar-grid {
+    display: grid;
+    /* Adjusting column widths: Time column smaller, day columns flexible but constrained */
+    grid-template-columns: 60px repeat(7, minmax(80px, 1fr)); /* Time column 60px, days share remaining space, min 80px */
+    border: 1px solid var(--medium-gray, #ddd);
+    font-size: 1em; /* Reduced base font size for calendar grid */
+    table-layout: fixed; /* Helps with column widths */
+    width: 100%;
+}
+
+.calendar-grid .grid-header,
+.calendar-grid .time-slot,
+.calendar-grid .day-column .hour-cell {
+    padding: var(--spacing-xs, 5px); /* Reduced padding */
+    border-right: 1px solid var(--medium-gray, #ddd);
+    border-bottom: 1px solid var(--medium-gray, #ddd);
+    text-align: center;
+    overflow: hidden; /* Prevent content from breaking layout */
+    text-overflow: ellipsis; /* Show ... for overflowed text */
+    white-space: nowrap; /* Keep header text on one line */
+}
+
+.calendar-grid .grid-header:last-child,
+.calendar-grid .day-column .hour-cell:last-child {
+    border-right: none;
+}
+
+.calendar-grid .grid-header {
+    background-color: var(--purple-lighter, #f8f9fa);
+    font-weight: 700;
+    color: var(--purple-dark);
+    font-size: 0.9em; /* Further reduce header font if needed */
+}
+
+.calendar-grid .time-slot {
+    background-color: var(--purple-very-pale, #f8f9fa);
+    font-weight: 700;
+    font-size: 0.8em; /* Reduced font size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--purple-dark);
+    padding: var(--spacing-xs, 4px); /* Reduced padding */
+}
+
+.calendar-grid .day-column .hour-cell {
+    min-height: 50px; /* Reduced min-height */
+    position: relative;
+    background-color: var(--white);
+}
+
+.calendar-grid .day-column .hour-cell.non-working-hour {
+    background-color: var(--light-gray, #f0f0f0);
+    opacity: 0.7;
+}
+
+/* Appointment Styling within Calendar */
+.appointment-block {
+    background-color: var(--accent-yellow);
+    color: var(--dark-gray);
+    border-left: 3px solid var(--purple-regular);
+    border-radius: var(--border-radius-sm, 4px);
+    padding: 3px 5px; /* Reduced padding */
+    margin-bottom: 2px; /* Reduced margin */
+    font-size: 0.8em; /* Reduced font size */
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; /* Allow wrapping for appointment text if needed, but be careful */
+    line-height: 1.2;
+    transition: background-color var(--transition-fast, 0.2s ease);
+}
+
+.appointment-block:hover {
+    background-color: #e0b003;
+}
+
+.appointment-block .appointment-time {
+    font-weight: 700;
+    display: block;
+    font-size: 0.9em;
+}
+
+.appointment-block .appointment-service {
+    display: block;
+    font-size: 0.85em;
+    color: var(--purple-dark);
+}
+
+/* Modal for Reservation Details (styles remain largely the same, ensure it's usable) */
+.reservation-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+}
+
+.reservation-modal-content {
+    background-color: var(--white);
+    padding: var(--spacing-lg, 20px);
+    border-radius: var(--border-radius-md, 8px);
+    box-shadow: var(--box-shadow, 0 5px 15px rgba(0, 0, 0, 0.3));
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    animation: fadeInModal 0.3s ease-out;
+}
+
+.reservation-modal-close {
+    position: absolute;
+    top: var(--spacing-sm, 10px);
+    right: var(--spacing-md, 15px);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark-gray);
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.reservation-modal-close:hover {
+    color: var(--purple-dark);
+}
+
+.reservation-modal-body h3 {
+    margin-top: 0;
+    color: var(--purple-dark);
+    border-bottom: 1px solid var(--medium-gray, #eee);
+    padding-bottom: var(--spacing-sm, 0.5em);
+    margin-bottom: var(--spacing-md, 1em);
+}
+
+.reservation-modal-body p {
+    margin: var(--spacing-sm, 0.5em) 0;
+    line-height: 1.6;
+    font-size: 1.3rem;
+}
+
+.reservation-modal-body strong {
+    color: var(--purple-dark);
+    font-weight: 700;
+}
+
+.content-with-menu.blur-background-calendar {
+    filter: blur(5px);
+    transition: filter var(--transition-normal, 0.3s ease-out);
+}
+
+body.reservation-modal-open > *:not(.reservation-modal-overlay) {
+    pointer-events: none;
+}
+
+.reservation-detail-item {
+    margin-bottom: var(--spacing-sm, 10px);
+    font-size: 1.3rem;
+}
+
+.reservation-detail-item strong {
+    display: inline-block;
+    width: 120px;
+    color: var(--purple-dark);
+}
+
+.reservation-detail-item span {
+    color: var(--dark-gray);
+}
+
+/* Dark Theme Adjustments for Calendar */
+.dark-theme .calendar-container {
+    background-color: var(--dark-bg-secondary);
+    box-shadow: var(--dark-box-shadow);
+}
+
+.dark-theme .calendar-header {
+    border-bottom: 1px solid var(--dark-border-color);
+}
+
+.dark-theme .calendar-header h2 {
+    color: var(--dark-text-primary);
+}
+
+.dark-theme .calendar-nav button {
+    background-color: var(--dark-accent-primary);
+    color: var(--dark-bg-primary);
+}
+
+.dark-theme .calendar-nav button:hover {
+    background-color: var(--dark-accent-secondary);
+}
+
+.dark-theme .calendar-grid {
+    border: 1px solid var(--dark-border-color);
+}
+
+.dark-theme .calendar-grid .grid-header,
+.dark-theme .calendar-grid .time-slot,
+.dark-theme .calendar-grid .day-column .hour-cell {
+    border-right: 1px solid var(--dark-border-color);
+    border-bottom: 1px solid var(--dark-border-color);
+}
+
+.dark-theme .calendar-grid .grid-header {
+    background-color: var(--dark-bg-tertiary);
+    color: var(--dark-text-primary);
+}
+
+.dark-theme .calendar-grid .time-slot {
+    background-color: var(--dark-bg-input);
+    color: var(--dark-text-secondary);
+}
+
+.dark-theme .calendar-grid .day-column .hour-cell {
+    background-color: var(--dark-bg-secondary);
+}
+
+.dark-theme .calendar-grid .day-column .hour-cell.non-working-hour {
+    background-color: var(--dark-bg-primary);
+    opacity: 0.6;
+}
+
+.dark-theme .appointment-block {
+    background-color: var(--dark-accent-primary);
+    color: var(--dark-bg-primary);
+    border-left: 3px solid var(--dark-accent-secondary);
+}
+
+.dark-theme .appointment-block:hover {
+    background-color: var(--dark-accent-secondary);
+}
+
+.dark-theme .appointment-block .appointment-service {
+    color: var(--dark-bg-tertiary);
+}
+
+/* Dark Theme for Modal */
+.dark-theme .reservation-modal-content {
+    background-color: var(--dark-bg-secondary);
+    color: var(--dark-text-primary);
+}
+
+.dark-theme .reservation-modal-close {
+    color: var(--dark-text-secondary);
+}
+
+.dark-theme .reservation-modal-close:hover {
+    color: var(--dark-text-primary);
+}
+
+.dark-theme .reservation-modal-body h3 {
+    color: var(--dark-accent-primary);
+    border-bottom: 1px solid var(--dark-border-color);
+}
+
+.dark-theme .reservation-modal-body strong {
+    color: var(--dark-text-primary);
+}
+
+.dark-theme .reservation-detail-item strong {
+    color: var(--dark-text-primary);
+}
+
+.dark-theme .reservation-detail-item span {
+    color: var(--dark-text-secondary);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .calendar-grid {
+        grid-template-columns: 40px repeat(7, minmax(60px, 1fr)); /* Even smaller time column and day columns */
+        font-size: 0.9em; /* Smaller font for mobile */
+    }
+    .calendar-grid .grid-header {
+        font-size: 0.8em;
+        padding: 3px;
+    }
+    .calendar-grid .time-slot {
+        font-size: 0.7em;
+        padding: 3px;
+    }
+    .appointment-block {
+        font-size: 0.7em;
+        padding: 2px 3px;
+    }
+    .calendar-header h2 {
+        font-size: 1.3em;
+    }
+    .calendar-nav button {
+        font-size: 0.9em;
+        padding: 4px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar-container {
+        padding: 5px;
+    }
+    .calendar-grid {
+        grid-template-columns: 30px repeat(7, minmax(40px, 1fr)); /* Very small columns */
+        font-size: 0.8em;
+    }
+     .calendar-grid .grid-header {
+        font-size: 0.7em;
+        white-space: normal; /* Allow day names to wrap if necessary */
+    }
+    .appointment-block .appointment-time,
+    .appointment-block .appointment-service {
+        font-size: 0.8em; /* Adjust text within appointment block */
+    }
+}
+

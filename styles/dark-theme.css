@@ -1,0 +1,275 @@
+/* 
+ * dark-theme.css - Tema oscuro para la aplicación
+ * Paleta de colores: Grises oscuros con acentos amarillos
+ */
+
+/* Variables CSS para el tema oscuro */
+:root {
+  /* Variables del tema oscuro */
+  --dark-bg-primary: #202123;
+  --dark-bg-secondary: #343541;
+  --dark-bg-tertiary: #444654;
+  --dark-bg-input: #40414f;
+  
+  /* Colores de texto para tema oscuro */
+  --dark-text-primary: #f1f1f3;
+  --dark-text-secondary: #c5c5d2;
+  --dark-text-tertiary: #8e8ea0;
+  
+  /* Colores de acento para tema oscuro - Cambiados de verde a amarillo */
+  --dark-accent-primary: #fbc404; /* Amarillo principal */
+  --dark-accent-secondary: #d9a404; /* Amarillo secundario más oscuro */
+  
+  /* Colores de estado para tema oscuro */
+  --dark-success: #2a9d8f;
+  --dark-warning: #e9c46a;
+  --dark-error: #e76f51;
+  --dark-info: #4d96ff;
+  
+  /* Bordes y sombras para tema oscuro */
+  --dark-border-color: #4d4d4f;
+  --dark-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Clase para activar el tema oscuro */
+.dark-theme {
+  /* Colores de fondo */
+  --white: var(--dark-bg-primary);
+  --light-gray: var(--dark-bg-secondary);
+  --medium-gray: var(--dark-bg-tertiary);
+  --dark-gray: var(--dark-text-primary);
+  
+  /* Colores principales - Azules adaptados a oscuro */
+  --blue-dark: var(--dark-accent-primary);
+  --blue-medium: var(--dark-accent-secondary);
+  --blue-regular: var(--dark-accent-primary);
+  --blue-light: var(--dark-accent-secondary);
+  --blue-lighter: var(--dark-accent-secondary);
+  
+  /* Colores secundarios - Azules claros adaptados a oscuro */
+  --blue-pale: var(--dark-accent-secondary);
+  --blue-very-pale: var(--dark-bg-tertiary);
+  --blue-almost-white: var(--dark-bg-secondary);
+  --blue-white: var(--dark-bg-tertiary);
+  
+  /* Color de acento */
+  --accent-yellow: var(--dark-accent-primary);
+  
+  /* Colores de estado */
+  --success: var(--dark-success);
+  --warning: var(--dark-warning);
+  --error: var(--dark-error);
+  --info: var(--dark-info);
+  
+  /* Sombras */
+  --box-shadow: var(--dark-box-shadow);
+  
+  /* Estilos específicos para el tema oscuro */
+  color: var(--dark-text-primary);
+  background-color: var(--dark-bg-primary);
+}
+
+/* Ajustes específicos para elementos en tema oscuro */
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3 {
+  color: var(--dark-text-primary);
+}
+
+.dark-theme h4,
+.dark-theme h5,
+.dark-theme h6 {
+  color: var(--dark-text-secondary);
+}
+
+.dark-theme a {
+  color: var(--dark-accent-primary);
+}
+
+/* .dark-theme a:hover {
+  color: var(--dark-accent-secondary);
+} */
+
+.dark-theme .divider {
+  background-color: var(--dark-bg-primary);
+}
+
+.dark-theme .btn-primary {
+  background-color: var(--dark-accent-primary);
+  color: var(--dark-bg-primary); /* Texto oscuro para mejor contraste con amarillo */
+}
+
+.dark-theme .btn-primary:hover {
+  background-color: var(--dark-accent-secondary);
+  color: var(--dark-bg-primary); /* Texto oscuro para mejor contraste con amarillo */
+}
+
+.dark-theme .btn-secondary {
+  background-color: var(--dark-bg-tertiary);
+  color: var(--dark-text-primary);
+}
+
+.dark-theme .btn-secondary:hover {
+  background-color: var(--dark-bg-input);
+  color: var(--dark-text-primary);
+}
+
+.dark-theme .btn-outline {
+  background-color: transparent;
+  border: 2px solid var(--dark-accent-primary);
+  color: var(--dark-accent-primary);
+}
+
+.dark-theme .btn-outline:hover {
+  background-color: var(--dark-accent-primary);
+  color: var(--dark-bg-primary); /* Texto oscuro para mejor contraste con amarillo */
+}
+
+/* Formularios en tema oscuro */
+.dark-theme input,
+.dark-theme select,
+.dark-theme textarea {
+  background-color: var(--dark-bg-input);
+  border: 1px solid var(--dark-border-color);
+  color: var(--dark-text-primary);
+}
+
+.dark-theme input:focus,
+.dark-theme select:focus,
+.dark-theme textarea:focus {
+  border-color: var(--dark-accent-primary);
+  outline: none;
+}
+
+.dark-theme label {
+  color: var(--dark-text-secondary);
+}
+
+/* Tablas en tema oscuro */
+.dark-theme .data-table,
+.dark-theme .service-table,
+.dark-theme .schedule-table {
+  border-color: var(--dark-border-color);
+}
+
+.dark-theme .data-table th,
+.dark-theme .service-table th,
+.dark-theme .schedule-table th {
+  background-color: var(--dark-bg-tertiary);
+  color: var(--dark-text-primary);
+  border-color: var(--dark-border-color);
+}
+
+.dark-theme .data-table td,
+.dark-theme .service-table td,
+.dark-theme .schedule-table td {
+  border-color: var(--dark-border-color);
+}
+
+.dark-theme .data-table tr:nth-child(even),
+.dark-theme .service-table tr:nth-child(even),
+.dark-theme .schedule-table tr:nth-child(even) {
+  background-color: var(--dark-bg-secondary);
+}
+
+.dark-theme .data-table tr:hover,
+.dark-theme .service-table tr:hover,
+.dark-theme .schedule-table tr:hover {
+  background-color: var(--dark-bg-input);
+}
+
+/* Modales en tema oscuro */
+.dark-theme .modal-content {
+  background-color: var(--dark-bg-secondary);
+  color: var(--dark-text-primary);
+}
+
+.dark-theme .close {
+  color: var(--dark-text-secondary);
+}
+
+.dark-theme .close:hover {
+  color: var(--dark-text-primary);
+}
+
+/* Clases de utilidad para tema oscuro */
+.dark-theme .bg-light {
+  background-color: var(--dark-bg-secondary);
+}
+
+.dark-theme .bg-white {
+  background-color: var(--dark-bg-primary);
+}
+
+.dark-theme .bg-blue {
+  background-color: var(--dark-accent-primary);
+  color: var(--dark-bg-primary); /* Texto oscuro para mejor contraste con amarillo */
+}
+
+.dark-theme .bg-yellow {
+  background-color: var(--dark-accent-primary);
+  color: var(--dark-bg-primary); /* Texto oscuro para mejor contraste con amarillo */
+}
+
+.dark-theme .text-blue {
+  color: var(--dark-accent-primary);
+}
+
+.dark-theme .text-yellow {
+  color: var(--dark-accent-primary);
+}
+
+.dark-theme .text-dark {
+  color: var(--dark-text-primary);
+}
+
+.dark-theme .text-light {
+  color: var(--dark-text-secondary);
+}
+
+/* Botón para cambiar entre temas */
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--dark-bg-tertiary);
+  color: var(--dark-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: var(--box-shadow);
+  border: none;
+  transition: all var(--transition-normal);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+.theme-toggle i {
+  font-size: 1.5rem;
+}
+
+/* Ajustes para el menú en tema oscuro */
+.dark-theme .nav-container {
+  background-color: var(--dark-bg-secondary);
+}
+
+.dark-theme .menu-bar li a {
+  color: var(--dark-text-primary);
+}
+
+.dark-theme .menu-bar li a:hover {
+  background-color: var(--dark-bg-tertiary);
+}
+
+/* Ajustes para la paginación en tema oscuro */
+.dark-theme .pagination-button.active {
+  background-color: var(--dark-accent-primary);
+  color: var(--dark-bg-primary); /* Texto oscuro para mejor contraste con amarillo */
+}

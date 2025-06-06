@@ -1,0 +1,296 @@
+/* 
+ * home.css - Estilos específicos para la página de inicio
+ */
+
+/* Estilos para el contenedor principal */
+.home-container {
+    width: 100%;
+    position: relative;
+}
+
+/* Estilos para el menú superior con iconos para usuarios no logueados */
+.icon-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    padding: 15px 30px;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.icon-menu-left, .icon-menu-right {
+    display: flex;
+    gap: 30px;
+}
+
+/* Estilos para el menú con 6 iconos distribuidos para usuarios logueados */
+.icon-menu-logged {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.icon-menu-item {
+    color: rgb(255, 255, 255);
+    font-size: 24px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 8px;
+    border-radius: 50%;
+}
+.icon-menu-item.notification-icon-container {
+    padding-top: 0px;
+}
+
+.icon-menu-item:hover {
+    transform: scale(1.2);
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7), 
+                0 0 0 #000000, 
+                0 0 1px #000000, 
+                0 0 2px rgb(0, 0, 0)000;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.9));
+}
+
+/* Estilos para el video de fondo */
+.video-container {
+    width: 100%;
+    height: 40vh; /* Reducido de 60vh a 40vh para que la animación ocupe menos espacio */
+    position: relative;
+    overflow: hidden;
+    padding-top: 20px; /* Añadido padding superior para dar más espacio al menú */
+}
+
+.video-background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Estilos para el buscador sobre el video */
+.search-container {
+    position: absolute;
+    top: 65%; /* Bajado desde 50% para dar más espacio al título */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    z-index: 10;
+    margin-top: 20px; /* Añadido margen superior para separar más del título */
+}
+
+.search-form {
+    display: flex;
+    background-color: white;
+    opacity: 0.5;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.search-input {
+    flex-grow: 1;
+    border: none;
+    font-size: 25px;
+    padding: 10px 15px; /* Padding ajustado para centrar el texto verticalmente */
+    margin-bottom: 0px;
+    border-radius: 50px;
+    background-color: white !important;
+    border-style: none !important;
+    height: 50px; /* Altura fija para el input */
+    line-height: 30px; /* Alineación de línea para centrar el texto */
+    box-sizing: border-box; /* Para que el padding no afecte el tamaño total */
+    outline: none; /* Eliminar el contorno al hacer focus */
+    vertical-align: middle; /* Alineación vertical */
+}
+
+.search-button {
+    background-color: white;
+    border: none;
+    padding: 0 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center; /* Centrar el icono verticalmente */
+    height: 50px; /* Misma altura que el input */
+}
+
+.search-button i {
+    font-size: 20px;
+    color: #333;
+}
+
+/* Estilos para el titulo de la pagina */
+.page-title {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.page-title h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+
+/* Línea divisoria */
+.divider {
+    width: 100%;
+    height: 2px;
+    background-color: var(--white);
+    margin: 0;
+    position: relative;
+    z-index: 2;
+}
+
+/* Estilos para la visualización de negocios */
+.businesses-container {
+    padding: 30px 20px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    background-color: var(--white);
+}
+
+.businesses-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.business-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.business-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    /* margin-bottom: 10px; */
+}
+
+.business-name {
+    font-weight: bold;
+    font-size: 30px;
+    color: #000;
+    margin: 5px 0;
+}
+
+.business-address {
+    font-size: 20px;
+    color: #0066cc;
+    margin: 0;
+}
+
+/* Estilos para la paginación */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.pagination-button {
+    margin: 0 5px;
+    padding: 8px 15px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pagination-button:hover {
+    background-color: #ddd;
+}
+
+.pagination-button.active {
+    background-color: var(--purple-dark);
+    color: white;
+}
+
+/* Espaciado para contenido en otras vistas */
+.content-with-menu {
+    z-index: 99;
+    padding-top: 70px; /* Espacio para evitar superposición con el menú */
+}
+
+/* Estilos responsivos */
+@media (max-width: 1024px) {
+    .businesses-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .businesses-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .icon-menu-item {
+        font-size: 20px;
+    }
+    
+    .content-with-menu {
+        padding-top: 60px;
+    }
+    
+    /* Ajustes responsivos para el título y buscador */
+    .text-container {
+        font-size: 80px;
+        top: 25%;
+    }
+    
+    .search-container {
+        top: 60%;
+    }
+}
+
+@media (max-width: 480px) {
+    .businesses-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .icon-menu, .icon-menu-logged {
+        padding: 10px 15px;
+    }
+    
+    .content-with-menu {
+        padding-top: 50px;
+    }
+    
+    /* Ajustes responsivos para el título y buscador en pantallas pequeñas */
+    .text-container {
+        font-size: 60px;
+        top: 20%;
+    }
+    
+    .search-container {
+        top: 55%;
+        width: 90%;
+        margin-top: 40px;
+    }
+    
+    .search-input {
+        font-size: 20px;
+        padding: 10px;
+    }
+}

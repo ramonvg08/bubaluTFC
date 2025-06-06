@@ -1,0 +1,229 @@
+/* 
+ * login.css - Estilos específicos para el formulario de inicio de sesión
+ * Parte del sistema de diseño con paleta de azules y acento amarillo
+ */
+
+/* Contenedor principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: var(--spacing-md);
+}
+
+/* Botón de volver atrás */
+.boton-atras {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  font-size: 40px;
+  color: var();
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.boton-atras:hover {
+  color: var(--accent-yellow);
+}
+
+/* Formulario de login */
+#login_form {
+  background-color: var(--white);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--box-shadow);
+  padding: var(--spacing-xl);
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  opacity: 0.9;
+}
+
+/* Encabezado del formulario */
+#form_header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+#form_header h1 {
+  margin: 0;
+  font-size: 3rem;
+}
+
+#mode_icon {
+  font-size: 1.5rem;
+  color: var(--dark-gray);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+#mode_icon:hover {
+  color: var(--accent-yellow);
+}
+
+/* Contenedor de inputs */
+#inputs {
+  margin-bottom: var(--spacing-lg);
+}
+
+.input-box {
+  margin-bottom: var(--spacing-md);
+}
+
+.input-box label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 600;
+  color: var(--dark-gray);
+  font-size: 1.75rem;
+}
+
+/* Campo de entrada con icono */
+.input-field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--medium-gray);
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
+  font-family: "Dongle", sans-serif;
+}
+
+.input-field:focus-within {
+  border-color: var(--purple-regular);
+}
+
+.input-field i {
+  padding: 0 var(--spacing-md);
+  color: var(--purple-regular);
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.input-field input {
+  flex: 1;
+  padding: var(--spacing-md);
+  margin: 0;
+  border: none;
+  outline: none;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+}
+
+.input-field input::placeholder {
+  color: #aaa;
+}
+
+/* Botón de inicio de sesión */
+#login_button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--purple-regular);
+  color: var(--dark-text-primary);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font-family: 'Dongle', sans-serif;
+  font-size: 1.7rem;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+#login_button:hover {
+  background-color: var(--purple-dark);
+}
+
+/* Enlace de registro */
+.register-link {
+  text-align: center;
+  margin-top: var(--spacing-md);
+}
+
+.register-link p {
+  margin: 0;
+  color: var(--dark-gray);
+}
+
+.register-link a {
+  color: var(--accent-yellow);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color var(--transition-fast);
+}
+
+.register-link a:hover {
+  color: #e0b003;
+  text-decoration: underline;
+}
+
+/* Mensaje de error */
+.message {
+  background-color: rgba(55, 55, 55, 0.7);
+  color: var(--error);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  margin-top: var(--spacing-md);
+  text-align: center;
+  max-width: 400px;
+}
+
+.message p {
+  margin: 0;
+}
+
+/* Tema alternativo (modo oscuro) */
+.dark-mode #login_form {
+  background-color: var();
+}
+
+.dark-mode #form_header h1 {
+  color: var(--accent-yellow);
+}
+
+.dark-mode #mode_icon,
+.dark-mode .input-box label,
+.dark-mode .register-link p {
+  color: var(--white);
+}
+
+.dark-mode .input-field {
+  border-color: var(--purple-regular);
+}
+
+.dark-mode .input-field i {
+  background-color: var(--purple-regular);
+  color: var(--white);
+}
+
+.dark-mode .input-field input {
+  background-color: var(--purple-dark);
+  color: var(--white);
+}
+
+.dark-mode #login_button {
+  background-color: var(--accent-yellow);
+  color: var(--dark-gray);
+}
+
+.dark-mode #login_button:hover {
+  background-color: #e0b003;
+}
+
+/* Responsividad */
+@media (max-width: 480px) {
+  #login_form {
+    padding: var(--spacing-md);
+  }
+
+  .boton-atras {
+    top: 10px;
+    left: 10px;
+  }
+}

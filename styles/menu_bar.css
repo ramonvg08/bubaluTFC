@@ -1,0 +1,89 @@
+/* styles/menu_bar.css */
+
+/* Estilos para la burbuja de notificación en el menú */
+.notification-icon-container {
+    position: relative;
+    display: inline-flex; /* Para alinear el icono y la burbuja */
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-bubble {
+    position: absolute;
+    top: -5px; /* Ajustar según el tamaño del icono */
+    right: -8px; /* Ajustar según el tamaño del icono */
+    background-color: var(--danger-bg, #dc3545); /* Color rojo para la notificación */
+    color: white;
+    border-radius: 50%;
+    padding: 0.1em 0.4em; /* Ajustar padding para el tamaño del número */
+    font-size: 0.7em; /* Tamaño del número dentro de la burbuja */
+    font-weight: bold;
+    display: flex; /* Para centrar el número dentro de la burbuja */
+    align-items: center;
+    justify-content: center;
+    min-width: 16px; /* Ancho mínimo para que sea circular incluso con un dígito */
+    height: 16px; /* Alto para que sea circular */
+    line-height: 1; /* Para mejor centrado vertical del texto */
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    z-index: 10; /* Asegurar que esté por encima de otros elementos del menú si es necesario */
+}
+
+/* Estilos para modo oscuro */
+.dark-theme .notification-bubble {
+    background-color: var(--dark-danger-bg, #ff4d4d); /* Un rojo más brillante para el modo oscuro si es necesario */
+    /* color: var(--dark-text-primary, #f1f1f1); // El blanco suele funcionar bien */
+}
+
+/* Agrega esto a styles/menu_bar.css */
+.dropdown-calendar {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-calendar-content {
+    display: none;
+    position: absolute;
+    background-color: var(--white);
+    min-width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 6px;
+    padding: 8px 0;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.dropdown-calendar-content a {
+    padding: 10px 18px;
+    text-decoration: none;
+    display: block;
+    font-size: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.dark-theme .dropdown-calendar-content a {
+    color: var(--dark-gray);
+    border-bottom: 1px solid rgb(94, 94, 94);
+
+}
+
+.dark-theme .dropdown-calendar-content a:hover {
+    color: var(--accent-yellow);
+}
+
+.dropdown-calendar-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-calendar:hover .dropdown-calendar-content,
+.dropdown-calendar:focus-within .dropdown-calendar-content {
+    display: block;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+/* Otros estilos de menu_bar.css que ya existan o se necesiten pueden ir aquí */
+
